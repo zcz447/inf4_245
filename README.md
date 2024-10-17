@@ -1,2 +1,1 @@
-a
-use dev c++ more compact
+17/10/2024 - wyszukiwanie binarne
