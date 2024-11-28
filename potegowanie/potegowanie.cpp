@@ -2,8 +2,8 @@
 #include <cctype> //dla tolower()
 #include <cmath> //dla abs(), floor()
 
-float PotegowanieRekurencyjne(float podstawa, int wykladnikCalkowita);
-float PotegowanieIteracyjne(float podstawa, int wykladnikCalkowita);
+double PotegowanieRekurencyjne(float podstawa, int wykladnikCalkowita);
+double PotegowanieIteracyjne(float podstawa, int wykladnikCalkowita);
 
 using std::cout, std::cin;
 
@@ -12,7 +12,7 @@ using std::cout, std::cin;
 int main(){
     
     float podstawa, wykladnik;
-    float wynik = 1;
+    double wynik = 1;
     char wybor;
 
     cout << "| Potegowanie |\n\npodaj podstawe: ";
@@ -36,35 +36,35 @@ int main(){
             return 0;
         }
 
-            else if(wykladnik==1){
+        else if (podstawa == 0) {
 
-                if(wykladnikUjemny==false) {cout << "wynik: " << podstawa;}
-                    else{cout << "wynik: " << 1 / podstawa;}
-                return 0;
+            cout << "wynik: " << 0;
+            return 0;
             }
 
-            else if (podstawa == 0) {
+        else if(wykladnik==1){
 
-                cout << "wynik: " << 0;
-                return 0;
-                }
+            if(wykladnikUjemny==false) {cout << "wynik: " << podstawa;}
+                else{cout << "wynik: " << 1 / podstawa;}
+            return 0;
+        }
 
-            else if (podstawa == 1){
+        else if (podstawa == 1){
 
-                cout << "wynik: " << 1;
-                return 0;
-            }
+            cout << "wynik: " << 1;
+            return 0;
+        }
+            //jest e^x*ln(y), exp i log nie moge raczej uzywac, ale nie mam wiedzy matematycznej, ani tak zaawansowanej pod względem działania maszyn aby zaprogramowac te funkcje od 0
+    if(wykladnikReszta>0){wynik*=exp(wykladnikReszta*log(podstawa));}
 
-//policzenie PRZYBLIZONEJ reszty poza funkcja
-            if (wykladnikReszta > 0){wynik = wynik + wykladnikReszta * (podstawa -1);}
-
-//sprawdzenie czy ta liczba moze istniec
+//sprawdzenie czy liczba jest urojona
     if (podstawa < 0 && wykladnikReszta > 0){
 
         wynik*=PotegowanieRekurencyjne(podstawa,wykladnikCalkowita);
+          if(wykladnikUjemny){wynik = 1 / wynik;}
 
-        if (wykladnikUjemny==false){cout << "brak rozwiązania, wynikiem jest: " << wynik << "i - liczba urojona"; }
-                else{cout << "brak rozwiązania, wynikiem jest: " << 1 / wynik << "i - liczba urojona"; }
+        cout << "brak rozwiązania, wynikiem jest: " << wynik << "i - liczba urojona";
+        
         return 0;
     }
 
@@ -78,27 +78,23 @@ int main(){
 
 // wykonanie funkcji w zaleznosci od wyboru
     if (wybor == 'i'){
-
-        wynik*=PotegowanieIteracyjne(podstawa,wykladnikCalkowita);
-
-        if (wykladnikUjemny==false) {cout << "wynik: " << wynik;}
-            else {cout << "wynik: " << 1 / wynik;}        
+        wynik*=PotegowanieIteracyjne(podstawa,wykladnikCalkowita);       
     }    
         else{
             wynik*=PotegowanieRekurencyjne(podstawa,wykladnikCalkowita);
-            
-            if (wykladnikUjemny==false) {cout << "wynik: " << wynik;}
-                else {cout << "wynik: " << 1 / wynik;}
         }
+
+    if(wykladnikUjemny){wynik = 1 / wynik;}
+
+    cout << "wynik: " << wynik;
 
     return 0;
 };
 
-float PotegowanieIteracyjne(float podstawa, int wykladnikCalkowita){
+double PotegowanieIteracyjne(float podstawa, int wykladnikCalkowita){
 
-    float wynik = 1;
+    double wynik = 1;
 
-    // TO DZIAŁA WRESZCZIE, NAPISALAM WYKLADNIKRESZTA W IF I SZUKALAM BLEDU POL GODZINY, KOCHAM UMIEJETNOSC CZYTANIA ZE ZROZUMIENIEM
         while (wykladnikCalkowita > 0) {
 
             if (wykladnikCalkowita % 2 == 1) {
@@ -115,7 +111,7 @@ float PotegowanieIteracyjne(float podstawa, int wykladnikCalkowita){
 
 
 
-float PotegowanieRekurencyjne(float podstawa, int wykladnikCalkowita){
+double PotegowanieRekurencyjne(float podstawa, int wykladnikCalkowita){
 
 //milo wiedziec ze wybucha bez pierwszej czesci, naprawde milusio
     if (wykladnikCalkowita==0){return 1;}
