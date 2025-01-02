@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cmath>
 
 using std::cout, std::cin;
 
@@ -20,15 +19,16 @@ int main (){
     return 0;
 };
 
-
 void RozkladNaCzynnikiPierwsze(int liczbaRozkladana){
     int dzielnik = 2;
-    //breaks here
+    bool przecinek = false;
+    
     while (liczbaRozkladana>1){
         
         while(liczbaRozkladana % dzielnik == 0){
-
-            cout << dzielnik << ", ";
+            if (przecinek){cout << ", ";}
+                else{przecinek = true;};
+            cout << dzielnik;
             liczbaRozkladana /= dzielnik;
         };
         dzielnik++;

@@ -43,7 +43,7 @@ int main(){
 //wybor co wyswietlic
     while(wyborWypisanych != 'p' && wyborWypisanych != 'z' && wyborWypisanych != 'w'){
 
-        cout << "wypisac liczby pierwsze [p], nie pierwsze [z] czy wszystkie [w]: ";
+        cout << "wypisac liczby pierwsze [p], zlozone [z] czy wszystkie [w]: ";
             cin >> wyborWypisanych;
             wyborWypisanych = tolower(wyborWypisanych);
     }
