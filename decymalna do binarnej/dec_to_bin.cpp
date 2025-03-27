@@ -1,6 +1,8 @@
 #include <iostream>
 using std::cin, std::cout;
 
+
+//make it an int returning bin instead and create a sister function in order to convert back to the original number
 void DecBin(int liczba) {
     int dlugosc = 0;
     int bin32[32] = {0}; 
