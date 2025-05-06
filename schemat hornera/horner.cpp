@@ -4,11 +4,8 @@ using std::cout, std::cin;
 
 
 int Horner(int stopien, int wspolczynniki[], int argument){
-    if(stopien == 0){
-        return wspolczynniki[0];
-    }
+    if(stopien == 0){ return wspolczynniki[0]; }
     return argument * Horner(stopien - 1, wspolczynniki, argument) + wspolczynniki[stopien]; 
-    
 }
 
 int main (){
